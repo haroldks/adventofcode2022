@@ -6,8 +6,7 @@ use std::fs::File;
 use std::io::BufReader;
 
 fn main() {
-    let day = 2;
+    let day = 3;
     let path = format!("inputs/day_{}", day);
-    println!("{}", day_2::run(&path, false));
-    println!("{}", day_2::run(&path, true));
+    println!("{}", day_3::run(&path, true));
 }
