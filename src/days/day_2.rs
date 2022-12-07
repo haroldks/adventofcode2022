@@ -1,5 +1,4 @@
 use super::utils::open_file;
-use std::cmp::max;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
@@ -18,23 +17,18 @@ fn part1(buffer: BufReader<File>) -> usize {
         let op = line_ref.chars().nth(0).unwrap() as i32 - 64;
         let player = line_ref.chars().nth(2).unwrap() as i32 - 87;
         let diff = player - op;
-        if diff ==  0 {
+        if diff == 0 {
             count += 3 + player;
-        }
-        else if diff < 0 {
+        } else if diff < 0 {
             if diff.abs() == 1 {
                 count += player;
-            }
-            else {
+            } else {
                 count += 6 + player;
             }
-
-        }
-        else {
-            if diff.abs() == 1{
+        } else {
+            if diff.abs() == 1 {
                 count += 6 + player;
-            }
-            else {
+            } else {
                 count += player;
             }
         }
@@ -48,26 +42,20 @@ fn part2(buffer: BufReader<File>) -> usize {
         let line_ref = line.as_ref().unwrap();
         let op = line_ref.chars().nth(0).unwrap() as i32 - 64;
         let player = line_ref.chars().nth(2).unwrap() as i32 - 87;
-        if player == 1{
-            if op - 1 == 0{
+        if player == 1 {
+            if op - 1 == 0 {
                 count += 3;
+            } else {
+                count += op - 1;
             }
-            else {
-                count += (op -1);
-            }
-
-        }
-        else if player == 2 {
+        } else if player == 2 {
             count += op + 3;
-        }
-        else {
-            if op == 3{
+        } else {
+            if op == 3 {
                 count += 6 + 1;
-            }
-            else {
+            } else {
                 count += 6 + op + 1
             }
-
         }
     }
     count as usize

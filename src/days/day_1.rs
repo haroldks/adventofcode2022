@@ -1,5 +1,4 @@
 use super::utils::open_file;
-use std::cmp::max;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
