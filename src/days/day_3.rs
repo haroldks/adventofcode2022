@@ -16,11 +16,11 @@ fn part1(buffer: BufReader<File>) -> usize {
     for line in buffer.lines() {
         let line = line.unwrap();
         let size = line.len();
-        let mut char_map = HashMap::new();
+        let mut char_map = HashSet::new();
         for (i, c) in line.chars().enumerate() {
             if i < size / 2 {
-                char_map.insert(c, true);
-            } else if char_map.contains_key(&c) {
+                char_map.insert(c);
+            } else if char_map.contains(&c) {
                 match c.is_lowercase() {
                     true => priority += c as usize - 96,
                     false => priority += c as usize - 38,
@@ -38,14 +38,12 @@ fn part2(buffer: BufReader<File>) -> usize {
     for (id, line) in buffer.lines().enumerate() {
         let line = line.unwrap();
         if id % 3 == 0 {
-            char_set = HashSet::new();
-            for ch in line.chars() {
-                char_set.insert(ch);
-            }
+            char_set = line.chars().collect::<HashSet<char>>();
         } else if id % 3 == 1 {
             let mut to_remove = vec![];
+            let second_line_set = line.chars().collect::<HashSet<char>>();
             for ch in char_set.iter() {
-                if !line.contains(*ch) {
+                if !second_line_set.contains(ch) {
                     to_remove.push(*ch);
                 }
             }
